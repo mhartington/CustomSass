@@ -1,0 +1,268 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #4a87ee !default;
+$calm:                            #43cee6 !default;
+$balanced:                        #66cc33 !default;
+$energized:                       #f0b840 !default;
+$assertive:                       #ef4e3a !default;
+$royal:                           #8a6de9 !default;
+$dark:                            #444 !default;
+*/
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+//Custom Theme test
+// Colors
+// -------------------------------
+$custom: #057b6c !default;
+
+
+
+// Buttons
+// -------------------------------
+$button-custom-bg: $custom !default;
+$button-custom-text: #fff !default;
+$button-custom-border:darken($custom, 10%) !default;
+$button-custom-active-bg: darken($custom, 10%) !default;
+$button-custom-active-border: darken($custom, 10%) !default;
+
+
+
+// Bars
+// -------------------------------
+$bar-custom-bg: rgba($button-custom-bg, $bar-transparency) !default;
+$bar-custom-text: $button-custom-text !default;
+$bar-custom-border: $button-custom-border !default;
+$bar-custom-active-bg: $button-custom-active-bg !default;
+$bar-custom-active-border: $button-custom-active-border !default;
+
+
+
+
+// Tabs
+// -------------------------------
+$tabs-custom-bg: $button-custom-bg !default;
+$tabs-custom-border: $button-custom-border !default;
+$tabs-custom-text: $button-custom-text !default;
+$tabs-striped-off-color: #000;
+$tabs-striped-off-opacity: .4;
+$tabs-striped-border-width: 4px;
+
+
+
+
+// Items
+// -------------------------------
+$item-custom-bg: $button-custom-bg !default;
+$item-custom-border: $button-custom-border !default;
+$item-custom-text: $button-custom-text !default;
+$item-custom-active-bg: $button-custom-active-bg !default;
+$item-custom-active-border: $button-custom-active-border !default;
+
+
+
+
+// Toggle
+// -------------------------------
+$toggle-on-custom-bg: $button-custom-border !default;
+$toggle-on-custom-border: $toggle-on-custom-bg !default;
+$toggle-on-stable-bg: $button-stable-border !default;
+
+
+
+
+// Checkbox
+// -------------------------------
+$checkbox-off-border-custom: $button-custom-border !default;
+$checkbox-on-bg-custom: $button-custom-border !default;
+
+
+
+
+// Range
+// -------------------------------
+$range-custom-track-bg: $button-custom-border !default;
+
+
+
+// Badges
+// -------------------------------
+$badge-custom-bg: $button-custom-bg !default;
+$badge-custom-text: $button-custom-text !default;
+
+//Util
+
+// Allow parent element of tabs to define color, or just the tab itself */
+.tabs-custom > .tabs,
+.tabs.tabs-custom {
+  @include tab-style($tabs-custom-bg, $tabs-custom-border, $tabs-custom-text);
+  @include tab-badge-style($tabs-custom-text, $tabs-custom-bg);
+}
+
+@mixin tabs-striped($style, $color) {
+  &.#{$style} {
+    .tab-item.tab-item-active,
+    .tab-item.active,
+    .tab-item.activated {
+      margin-top: -4px;
+      color: $color;
+      border-style: solid;
+      border-width: $tabs-striped-border-width 0 0 0;
+      border-color: $color;
+    }
+  }
+}
+
+.tabs-striped {
+  .tabs {
+
+    background-color: #fff;
+    background-image: none;
+    border: 0;
+
+  }
+
+  @include tabs-striped('tabs-custom', $custom);
+  .tab-item {
+    color: $tabs-striped-off-color;
+    opacity: $tabs-striped-off-opacity;
+  }
+}
+
+// Navigational tab */
+
+// Active state for tab
+
+.tab-item.tab-item-active,
+.tab-item.active,
+.tab-item.activated {
+  opacity: 1;
+
+  &.tab-item-custom {
+    color: $custom;
+  }
+
+}
+
+.custom,
+a.custom {
+  color: $custom;
+}
+
+.custom-bg {
+  background-color: $custom;
+}
+
+.custom-border {
+  border-color: $button-custom-border;
+}
+
+.tabs .tab-item .badge,
+.badge {
+  &.badge-custom {
+    @include badge-style($badge-custom-bg, $badge-custom-text);
+  }
+}
+
+.bar {
+  &.bar-custom {
+    @include bar-style($bar-custom-bg, $bar-custom-border, $bar-custom-text);
+  }
+}
+
+.bar-custom {
+  .button {
+    @include button-style($bar-custom-bg, $bar-custom-border, $bar-custom-active-bg, $bar-custom-active-border, $bar-custom-text);
+    @include button-clear($bar-custom-text, $bar-title-font-size);
+  }
+}
+
+.button {
+  &.button-custom {
+    @include button-style($button-custom-bg, $button-custom-border, $button-custom-active-bg, $button-custom-active-border, $button-custom-text);
+    @include button-clear($button-custom-border);
+    @include button-outline($button-custom-border);
+  }
+}
+
+&.button-outline {
+  @include button-outline($button-custom-border);
+  @include transition(opacity .1s);
+  background: none;
+  box-shadow: none;
+}
+
+.button-clear {
+  @include button-clear($button-custom-border);
+  @include transition(opacity .1s);
+  padding: 0 $button-clear-padding;
+  max-height: $button-height;
+  border-color: transparent;
+  background: none;
+  box-shadow: none;
+
+  &.active,
+  &.activated {
+    opacity: 0.3;
+  }
+}
+
+.item {
+  &.item-custom {
+    @include item-style($item-custom-bg, $item-custom-border, $item-custom-text);
+  }
+}
+
+.item.active,
+.item.activated,
+.item-complex.active .item-content,
+.item-complex.activated .item-content,
+.item .item-content.active,
+.item .item-content.activated {
+
+  &.item-custom {
+    @include item-active-style($item-custom-active-bg, $item-custom-active-border);
+  }
+}
+
+.item-complex {
+
+  &.item-custom > .item-content {
+    @include item-style($item-custom-bg, $item-custom-border, $item-custom-text);
+
+    &.active,
+    &:active {
+      @include item-active-style($item-custom-active-bg, $item-custom-active-border);
+    }
+  }
+}
+
+.checkbox {
+  &.checkbox-custom {
+    @include checkbox-style($checkbox-off-border-custom, $checkbox-on-bg-custom);
+  }
+}
+
+.toggle {
+  &.toggle-custom {
+    @include toggle-style($toggle-on-custom-border, $toggle-on-custom-bg);
+  }
+}
+
+.range {
+  &.range-custom {
+    input {
+      @include range-style($range-custom-track-bg);
+    }
+  }
+}
